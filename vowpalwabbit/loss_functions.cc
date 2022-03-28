@@ -377,7 +377,7 @@ public:
   float second_derivative(const shared_data* sd, float prediction, float label) const override
   {
     float err = label - prediction;
-    return squared_loss_impl_second_derivative(sd, prediction) * (err > 0 ? _q : (1.f - _q));
+    return squared_loss_impl_second_derivative(sd, prediction) * (err < 0 ? _q : (1.f - _q));
   }
 
 private:
