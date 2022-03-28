@@ -354,7 +354,7 @@ BOOST_AUTO_TEST_CASE(expectile_loss_prediction_is_greater_than_label_test5)
   BOOST_CHECK_CLOSE(-0.01537673072f, loss->get_update(prediction, label, update_scale, pred_per_update), FLOAT_TOL);
   BOOST_CHECK_CLOSE(-0.016f, loss->get_unsafe_update(prediction, label, update_scale), FLOAT_TOL);
 
-  BOOST_CHECK_CLOSE(0.0256f, loss->get_squaregrad(prediction, label), FLOAT_TOL);
+  BOOST_CHECK_CLOSE(0.0256f, loss->get_square_grad(prediction, label), FLOAT_TOL);
   BOOST_CHECK_CLOSE(0.16f, loss->first_derivative(&sd, prediction, label), FLOAT_TOL);
   BOOST_CHECK_CLOSE(0.8f, loss->second_derivative(&sd, prediction, label), FLOAT_TOL);
 
@@ -439,8 +439,8 @@ BOOST_AUTO_TEST_CASE(compare_expectile_loss_with_squared_loss_test)
   constexpr float eta = 0.1f;     // learning rate
   constexpr float weight = 1.0f;  // example weight
 
-  constexpr float label = 0.5f;
-  constexpr float prediction = 0.4f;
+  constexpr float label = 0.4f;
+  constexpr float prediction = 0.5f;
   constexpr float update_scale = eta * weight;
   constexpr float pred_per_update = 1.0f;  // Use dummy value here, see gd.cc for details.
 
